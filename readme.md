@@ -13,7 +13,7 @@ Semua pengguna
 - Kelola data buku (Create, Read, Delete)
 
 ## Diagram ER
-![ERD](https://github.com/riyandrmd/boku-bookshelf-apps/assets/95599672/750c4e22-f0c1-4fc7-ae8d-21366270558b)
+![ER Diagram](https://github.com/riyandrmd/boku-bookshelf-apps/assets/95599672/430acd59-70ea-479f-9905-9f67d4c49e87)
 
 ## Tech stack
 
