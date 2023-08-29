@@ -17,7 +17,7 @@ Semua pengguna
 
 ## Tech stack
 
-- Frontend: React
+- Frontend : React
 - React library : Tailwind CSS, Chakra UI
 - Backend : Hapi
 - Database : MariaDB
