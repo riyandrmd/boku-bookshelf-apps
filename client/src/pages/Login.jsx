@@ -7,12 +7,16 @@ import {
   FormLabel,
   Heading,
   Text,
+  useColorMode,
+  useColorModeValue
 } from "@chakra-ui/react";
-
+import{BiSolidMoon, BiSolidSun } from 'react-icons/bi'
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 const Login = () => {
+  const bg = useColorModeValue('#e3dcf5', '#540694')
+  const { colorMode, toggleColorMode } = useColorMode();
   const [login, setLogin] = useState({
     email: "",
     password: "",
@@ -43,7 +47,12 @@ const Login = () => {
       align="center"
       justifyContent="center"
     >
-      <Card shadow='xl' py={4} px={4} mt={[0, -50]} borderRadius={8}>
+      <Box position='absolute' top='0' right='0'm={5}>
+        <Button variant='ghost' size='sm' onClick={toggleColorMode}>
+          {colorMode === 'light' ? <BiSolidMoon /> : <BiSolidSun color='white' />}
+        </Button>
+      </Box>
+      <Card bg={bg} shadow='xl' py={4} px={4} mt={[0, -50]} borderRadius={8}>
         <Box>
           <Heading
             as="p"

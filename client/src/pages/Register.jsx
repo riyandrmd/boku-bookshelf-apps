@@ -7,11 +7,17 @@ import {
   FormLabel,
   Heading,
   Text,
+  useColorMode,
+  useColorModeValue,
 } from "@chakra-ui/react";
+
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-
+import {BiSolidMoon, BiSolidSun} from 'react-icons/bi';
 const Register = () => {
+  const bg = useColorModeValue('#e3dcf5', '#540694')
+  const { colorMode, toggleColorMode } = useColorMode();
+
   const [passCheck, setPassCheck] = useState();
   const [register, setRegister] = useState({
     username: "",
@@ -45,7 +51,12 @@ const Register = () => {
       align="center"
       justifyContent="center"
     >
-      <Card py={4} px={4} mt={[0, -50]}  borderRadius={8}>
+      <Box position='absolute' top='0' right='0' m={5}>
+        <Button variant='ghost' size='sm' onClick={toggleColorMode}>
+          {colorMode === 'light' ? <BiSolidMoon /> : <BiSolidSun color='white' />}
+        </Button>
+      </Box>
+      <Card bg={bg} py={4} px={4} mt={[0, -50]} borderRadius={8}>
         <Box>
           <Heading
             as="p"
@@ -107,17 +118,17 @@ const Register = () => {
             </FormControl>
             <Text as="p" className="text-xs mt-2 text-center">
               Already have account ?
-              <Link to='/'bg='red.200'><b> Login</b></Link>
+              <Link to='/' bg='red.200'><b> Login</b></Link>
             </Text>
             <Button
               size="md"
               mt={6}
+              bgGradient="linear(to-br, #7928CA, #FF0080)" bgClip='border-box'
               className="rounded h-8 p-2 w-60 md:w-80"
-              colorScheme="blue"
               onClick={() => {
-                if(register.password == passCheck){
+                if (register.password == passCheck) {
                   handleRegister();
-                }else{
+                } else {
                   alert("password not match")
                 }
               }}>

@@ -1,4 +1,4 @@
-import { Box, Flex, Button, FormLabel } from "@chakra-ui/react";
+import { Box, Flex, Button, FormLabel, Input } from "@chakra-ui/react";
 import { useState } from "react";
 import { Api } from "../components/Utils";
 
@@ -25,7 +25,13 @@ const AddNewBook = () => {
     };
 
     const handleSave = async () => {
-        Api('books', "POST", newBook) 
+        try {
+            await Api('books', "POST", newBook);
+            alert("Book Saved!");
+        } catch (error) {
+            console.error("There is an error:", error);
+            alert("An error occurred while saving the book.");
+        }
     };
 
     return (
@@ -33,26 +39,25 @@ const AddNewBook = () => {
             <Box>
                 <FormLabel>Title</FormLabel>
                 <input
-                    className="rounded h-8 p-2 w-60 md:w-80"
+                    className="rounded border border-indigo-600 h-8 p-2 w-60 md:w-80"
                     type="text"
                     name="title"
                     value={newBook.title}
                     onChange={handleInputChange}
                     placeholder="Name"
                 />
-
-                <FormLabel mt={4}>Author</FormLabel>
+                <FormLabel mt={3}>Author</FormLabel>
                 <input
-                    className="rounded h-8 p-2 w-60 md:w-80"
+                    className="rounded border border-indigo-600 h-8 p-2 w-60 md:w-80"
                     type="text"
                     name="author"
                     value={newBook.author}
                     onChange={handleInputChange}
                     placeholder="Author"
                 />
-                <FormLabel mt={4}>Publisher</FormLabel>
+                <FormLabel mt={3}>Publisher</FormLabel>
                 <input
-                    className="rounded h-8 p-2 w-60 md:w-80"
+                    className="rounded border border-indigo-600 h-8 p-2 w-60 md:w-80"
                     type="text"
                     name="publisher"
                     value={newBook.publisher}
@@ -61,7 +66,7 @@ const AddNewBook = () => {
                 />
                 <FormLabel mt={4}>Year</FormLabel>
                 <input
-                    className="rounded h-8 p-2 w-60 md:w-80"
+                    className="rounded border border-indigo-600 h-8 p-2 w-60 md:w-80"
                     type="number"
                     name="year"
                     value={newBook.year}
@@ -81,30 +86,28 @@ const AddNewBook = () => {
                 </Box>
             </Box>
             <Box>
-                <Box>
-                    <FormLabel>Page Count</FormLabel>
-                    <input
-                        className="rounded h-8 p-2 w-60 md:w-80"
-                        type="number"
-                        name="pageCount"
-                        value={newBook.pageCount}
-                        onChange={handleInputChange}
-                        placeholder="Page Count"
-                    />
-                    <FormLabel mt={2}>Read Page</FormLabel>
-                    <input
-                        className="rounded h-8 p-2 w-60 md:w-80"
-                        type="number"
-                        name="readPage"
-                        value={newBook.readPage}
-                        onChange={handleInputChange}
-                        placeholder="Read Page"
-                    />
-                </Box>
+                <FormLabel>Page Count</FormLabel>
+                <input
+                    className="rounded border border-indigo-600 h-8 p-2 w-60 md:w-80"
+                    type="number"
+                    name="pageCount"
+                    value={newBook.pageCount}
+                    onChange={handleInputChange}
+                    placeholder="Page Count"
+                />
+                <FormLabel mt={2}>Read Page</FormLabel>
+                <input
+                    className="rounded border border-indigo-600 h-8 p-2 w-60 md:w-80"
+                    type="number"
+                    name="readPage"
+                    value={newBook.readPage}
+                    onChange={handleInputChange}
+                    placeholder="Read Page"
+                />
                 <FormLabel mt={3}>Summary</FormLabel>
                 <textarea
                     rows="4"
-                    className="rounded block p-2.5 w-60 md:w-80 text-sm"
+                    className="rounded border border-indigo-600 block p-2.5 w-60 md:w-80 text-sm"
                     name="summary"
                     value={newBook.summary}
                     onChange={handleInputChange}
@@ -113,9 +116,10 @@ const AddNewBook = () => {
 
                 <Button
                     size="md"
+                    bgGradient="linear(to-br, #7928CA, #FF0080)"
                     mt={6}
+                    colorScheme="purple"
                     className="rounded h-8 p-2 w-60 md:w-80"
-                    colorScheme="blue"
                     onClick={handleSave}
                 >
                     Save
