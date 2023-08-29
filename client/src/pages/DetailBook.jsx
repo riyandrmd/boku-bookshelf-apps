@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import { Api } from "../components/Utils";
 import { Flex, Image, Text, Box, Heading, Button } from '@chakra-ui/react';
@@ -6,6 +6,8 @@ import img from '/book.jpg'
 import { BsCheckCircle } from 'react-icons/bs'
 import { FaEdit } from 'react-icons/fa'
 import { AiFillDelete } from 'react-icons/ai'
+import { MdOutlineKeyboardBackspace } from 'react-icons/md'
+
 
 const DetailBook = () => {
     const { id } = useParams();
@@ -37,6 +39,11 @@ const DetailBook = () => {
             {
                 book &&
                 <Flex wrap='wrap' p='5' height='85vh' width='100%' alignItems='center' justifyContent='center' gap={50}>
+                    <Box position='absolute' top='70px' left='20px' m={5}>
+                        <Link to='/home'>
+                            <MdOutlineKeyboardBackspace size='30px' />
+                        </Link>
+                    </Box>
                     <Box width='500px'>
                         <Image src={img} objectFit='contain' width='100%' />
                     </Box>

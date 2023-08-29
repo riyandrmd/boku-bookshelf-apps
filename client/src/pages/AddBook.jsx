@@ -1,6 +1,8 @@
-import { Box, Flex, Button, FormLabel, Input } from "@chakra-ui/react";
+import { Box, Flex, Button, FormLabel } from "@chakra-ui/react";
 import { useState } from "react";
 import { Api } from "../components/Utils";
+import { MdOutlineKeyboardBackspace } from 'react-icons/md'
+import { Link } from 'react-router-dom';
 
 const AddNewBook = () => {
     const [newBook, setNewBook] = useState({
@@ -36,6 +38,12 @@ const AddNewBook = () => {
 
     return (
         <Flex pt="100px" width="100wh" height="80vh" alignItems="baseline" justify="center" wrap="wrap" gap="20px">
+            <Box position='absolute' top='70px' left='20px' m={5}>
+                <Link to='/home'>
+                    <MdOutlineKeyboardBackspace size='30px' />
+                </Link>
+            </Box>
+
             <Box>
                 <FormLabel>Title</FormLabel>
                 <input
@@ -118,7 +126,6 @@ const AddNewBook = () => {
                     size="md"
                     bgGradient="linear(to-br, #7928CA, #FF0080)"
                     mt={6}
-                    colorScheme="purple"
                     className="rounded h-8 p-2 w-60 md:w-80"
                     onClick={handleSave}
                 >
