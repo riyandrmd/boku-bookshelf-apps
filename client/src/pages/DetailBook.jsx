@@ -1,5 +1,6 @@
 import { useNavigate, useParams, Link } from 'react-router-dom';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { dataContext } from './Home'
 import { Api } from "../components/Utils";
 import { Flex, Image, Text, Box, Heading, Button } from '@chakra-ui/react';
 import img from '/book.jpg'
@@ -11,12 +12,15 @@ import { MdOutlineKeyboardBackspace } from 'react-icons/md'
 
 const DetailBook = () => {
     const { id } = useParams();
+    const {thisBooks, setThisBooks } = useContext(dataContext)
     const [detailbook, setDetailBook] = useState({});
     const navigate = useNavigate();
 
     useEffect(() => {
         Api('books/' + id)
-            .then((book) => setDetailBook(book))
+            .then((book) =>{
+                setDetailBook(book)
+            })
             .catch((err) => setError(err.message));
     }, []);
 
@@ -32,13 +36,14 @@ const DetailBook = () => {
     };
 
     const book = detailbook.data;
-    book && console.log(book[0].author)
+    book && setThisBooks(book[0])
+    
 
     return (
         <>
             {
                 book &&
-                <Flex wrap='wrap' p='5' height='85vh' width='100%' alignItems='center' justifyContent='center' gap={50}>
+                <Flex wrap='wrap' p='5' height='80vh' width='100%' alignItems='center' justifyContent='center' gap={50}>
                     <Box position='absolute' top='70px' left='20px' m={5}>
                         <Link to='/home'>
                             <MdOutlineKeyboardBackspace size='30px' />
@@ -57,9 +62,11 @@ const DetailBook = () => {
                             <Text>last page read {book[0].readPage}, out of {book[0].pageCount} pages</Text> :
                             <Flex alignItems='center'> <BsCheckCircle /><Text>You have already read this book </Text></Flex>}
                         <Flex>
-                            <Button variant='ghost' size='md' justifySelf='right'>
-                                <FaEdit />
-                            </Button>
+                            <Link to={`/home/updatebook/${id}`}>
+                                <Button variant='ghost' size='md' justifySelf='right'>
+                                    <FaEdit />
+                                </Button>
+                            </Link>
                             <Button variant='ghost' size='md' justifySelf='right' onClick={() => handleDelete()}>
                                 <AiFillDelete />
                             </Button>

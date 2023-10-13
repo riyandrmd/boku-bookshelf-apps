@@ -17,6 +17,7 @@ import AddNewBook from './pages/AddBook';
 import Books from './pages/Books.jsx';
 import theme from './components/Theme.jsx'
 import DetailBook from './pages/DetailBook.jsx'
+import UpdateBook from './pages/Updatebook.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +28,7 @@ const router = createBrowserRouter(
         <Route index element={<Books />} />
         <Route path='addbook' element={<AddNewBook />} />
         <Route path='detailbook/:id' element={<DetailBook />} />
+        <Route path='updatebook/:id' element={<UpdateBook />} />
       </Route>
     </Route>
   )

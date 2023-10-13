@@ -94,7 +94,7 @@ const Login = () => {
             <Text as="p" className="text-xs mt-2 text-center">
               Don't have any account ?
               <Link to="/register" bg="red.200">
-                <b> Sign In</b>
+                <b>Register</b>
               </Link>
             </Text>
             <Button
